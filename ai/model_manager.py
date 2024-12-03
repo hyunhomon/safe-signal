@@ -61,5 +61,5 @@ class ModelManager:
         with torch.no_grad():
             outputs = self.model(X).squeeze()
         
-        result = f'{outputs.item() * 100:.6f}%'
+        result = round(outputs.item() * 100, 4)
         return result
