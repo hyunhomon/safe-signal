@@ -1,0 +1,316 @@
+@font-face {
+    font-family: 'Tenada';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-2@1.0/Tenada.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@keyframes fill-circle {
+    0% { --percent: 0%; }
+    1% { --percent: 1%; }
+    2% { --percent: 2%; }
+    3% { --percent: 3%; }
+    4% { --percent: 4%; }
+    5% { --percent: 5%; }
+    6% { --percent: 6%; }
+    7% { --percent: 7%; }
+    8% { --percent: 8%; }
+    9% { --percent: 9%; }
+    10% { --percent: 10%; }
+    11% { --percent: 11%; }
+    12% { --percent: 12%; }
+    13% { --percent: 13%; }
+    14% { --percent: 14%; }
+    15% { --percent: 15%; }
+    16% { --percent: 16%; }
+    17% { --percent: 17%; }
+    18% { --percent: 18%; }
+    19% { --percent: 19%; }
+    20% { --percent: 20%; }
+    21% { --percent: 21%; }
+    22% { --percent: 22%; }
+    23% { --percent: 23%; }
+    24% { --percent: 24%; }
+    25% { --percent: 25%; }
+    26% { --percent: 26%; }
+    27% { --percent: 27%; }
+    28% { --percent: 28%; }
+    29% { --percent: 29%; }
+    30% { --percent: 30%; }
+    31% { --percent: 31%; }
+    32% { --percent: 32%; }
+    33% { --percent: 33%; }
+    34% { --percent: 34%; }
+    35% { --percent: 35%; }
+    36% { --percent: 36%; }
+    37% { --percent: 37%; }
+    38% { --percent: 38%; }
+    39% { --percent: 39%; }
+    40% { --percent: 40%; }
+    41% { --percent: 41%; }
+    42% { --percent: 42%; }
+    43% { --percent: 43%; }
+    44% { --percent: 44%; }
+    45% { --percent: 45%; }
+    46% { --percent: 46%; }
+    47% { --percent: 47%; }
+    48% { --percent: 48%; }
+    49% { --percent: 49%; }
+    50% { --percent: 50%; }
+    51% { --percent: 51%; }
+    52% { --percent: 52%; }
+    53% { --percent: 53%; }
+    54% { --percent: 54%; }
+    55% { --percent: 55%; }
+    56% { --percent: 56%; }
+    57% { --percent: 57%; }
+    58% { --percent: 58%; }
+    59% { --percent: 59%; }
+    60% { --percent: 60%; }
+    61% { --percent: 61%; }
+    62% { --percent: 62%; }
+    63% { --percent: 63%; }
+    64% { --percent: 64%; }
+    65% { --percent: 65%; }
+    66% { --percent: 66%; }
+    67% { --percent: 67%; }
+    68% { --percent: 68%; }
+    69% { --percent: 69%; }
+    70% { --percent: 70%; }
+    71% { --percent: 71%; }
+    72% { --percent: 72%; }
+    73% { --percent: 73%; }
+    74% { --percent: 74%; }
+    75% { --percent: 75%; }
+    76% { --percent: 76%; }
+    77% { --percent: 77%; }
+    78% { --percent: 78%; }
+    79% { --percent: 79%; }
+    80% { --percent: 80%; }
+    81% { --percent: 81%; }
+    82% { --percent: 82%; }
+    83% { --percent: 83%; }
+    84% { --percent: 84%; }
+    85% { --percent: 85%; }
+    86% { --percent: 86%; }
+    87% { --percent: 87%; }
+    88% { --percent: 88%; }
+    89% { --percent: 89%; }
+    90% { --percent: 90%; }
+    91% { --percent: 91%; }
+    92% { --percent: 92%; }
+    93% { --percent: 93%; }
+    94% { --percent: 94%; }
+    95% { --percent: 95%; }
+    96% { --percent: 96%; }
+    97% { --percent: 97%; }
+    98% { --percent: 98%; }
+    99% { --percent: 99%; }
+    100% { --percent: 100%; }
+}
+
+
+*{
+    box-sizing: border-box;
+    font-family: 'Tenada', sans-serif;
+}
+
+body, html{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+}
+
+h1, p{
+    margin: 0;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5;
+}
+
+.hidden{
+    display: none !important;
+}
+
+.container, #result{
+    width: 100%;
+    max-width: 500px;
+    padding: 4rem 2rem 2rem;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#result .result{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+#result .circle {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    --percent: 0%;
+    --multiplier: calc(var(--percent) * 0 / 100);
+    background: conic-gradient(black 0% var(--multiplier), #e5e5e5 var(--multiplier) 100%);
+    animation: fill-circle 1s ease forwards;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+#result .circle::before {
+    content: "";
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    background: white; /* 원 내부를 비우기 위한 색상 */
+    border-radius: 50%;
+}
+
+#result .percent {
+    position: relative; /* 중앙에 텍스트 배치 */
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#result .actions{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container .form-group{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.container .form-group .form-option{
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 10px;
+}
+
+.container .form-group .form-option label .error{
+    color: red;
+    border: 2px solid red;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    text-align: center;
+    line-height: 20px;
+    font-size: 12px;
+    margin: 0;
+    font-weight: black;
+}
+
+.container .form-group .form-option > label{
+    margin-bottom: 5px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.container .form-group .form-option > label > div{
+    margin-top: 5px;
+}
+
+.container .form-group .form-option .radio-group{
+    display: flex;
+    gap: 6px;
+}
+.container .form-group .form-option .radio-group:not(.vertical){
+    flex-direction: column;
+}
+.container .form-group .form-option .radio-label{
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.container .form-group .form-option .radio-label > label{
+    vertical-align: middle;
+}
+
+.container .form-group .form-option input,
+.container .form-group .form-option select{
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+.container .form-group .form-option input[type="radio"]{
+    margin: 0 10px;
+}
+
+.container .form-group .form-option input:focus,
+.container .form-group .form-option select:focus{
+    border-color: #333;
+}
+
+.container .actions{
+    margin-top: 20px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 10px;
+}
+
+.container button, #result button{
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    outline: none;
+}
+
+.container button:not(#prev), #result button{
+    border: none;
+    background-color: #333;
+}
+
+.container button:not(#prev):hover{
+    background-color: #555;
+}
+
+.container button#prev{
+    border: 1px solid #333;
+    background-color: #fff;
+    color: #333;
+}
+
+.container button#prev:hover{
+    background-color: #f5f5f5;
+}
+
+.container button:disabled{
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.container .form-group .form-option .error{
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.container .form-group .form-option .success{
+    color: green;
+    font-size: 14px;
+    margin-top: 5px;
+}

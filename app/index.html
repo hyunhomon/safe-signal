@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safe Signal</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div id="survey" class="container">
+        <div class="form" id="form"></div>
+        <div class="actions">
+            <button id="prev" disabled>이전</button>
+            <button id="next">다음</button>
+            <button id="submit">제출</button>
+        </div>
+    </div>
+    <div id="result" class="hidden">
+        <div class="result">
+            <div class="circle" id="circle">
+                <div class="percent" id="percent">0%</div>
+            </div>
+            <div class="solution" id="solution">당신은 물을 마셔야 합니다</div>
+        </div>
+        <div class="actions">
+            <button id="restart">다시하기</button>
+        </div>
+    </div>
+    <script src="/static/script.js"></script>
+</body>
+</html>
