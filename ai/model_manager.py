@@ -1,5 +1,5 @@
 import torch
-from torch.nn import Linear, ReLU, Sigmoid, Sequential, BCEWithLogitsLoss
+from torch.nn import Linear, ReLU, Sigmoid, Sequential, BCELoss
 
 class ModelManager:
     def __init__(self):
@@ -29,7 +29,7 @@ class ModelManager:
         y = torch.tensor(y.values, dtype=torch.float32)
 
         self.model.train()
-        criterion = BCEWithLogitsLoss()
+        criterion = BCELoss()
         optimizer = torch.optim.Adam(self.model.parameters(), lr)
 
         for epoch in range(epochs):
@@ -49,10 +49,9 @@ class ModelManager:
         self.model.eval()
         with torch.no_grad():
             outputs = self.model(X).squeeze()
-            predictions = torch.sigmoid(outputs)
         
-        log_loss = -torch.mean(y * torch.log(predictions) + (1 - y) * torch.log(1 - predictions))
-        brier_score = ((predictions - y) ** 2).mean().item()
+        log_loss = -torch.mean(y * torch.log(outputs) + (1 - y) * torch.log(1 - outputs))
+        brier_score = ((outputs - y) ** 2).mean().item()
         print(f"Log Loss: {log_loss}, Brier Score: {brier_score}")
     
     def predict(self, X):
@@ -61,7 +60,6 @@ class ModelManager:
         self.model.eval()
         with torch.no_grad():
             outputs = self.model(X).squeeze()
-            predictions = torch.sigmoid(outputs)
         
-        result = f'{predictions.item() * 100:.6f}%'
+        result = f'{outputs.item() * 100:.6f}%'
         return result
