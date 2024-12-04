@@ -1,18 +1,18 @@
 import torch
-from torch.nn import Linear, ReLU, Sigmoid, Sequential, BCELoss
+from torch.nn import Linear, ReLU, Dropout, Sigmoid, Sequential, BCELoss
 
 class ModelManager:
     def __init__(self):
         self.model = Sequential(
-            Linear(24, 64), ReLU(),
-            Linear(64, 32), ReLU(),
+            Linear(24, 64), ReLU(), Dropout(0.3),
+            Linear(64, 32), ReLU(), Dropout(0.2),
             Linear(32, 16), ReLU(),
             Linear(16, 1), Sigmoid()
         )
     
     def load(self, file_path):
         try:
-            self.model.load_state_dict(torch.load(file_path, weights_only=True))
+            self.model.load_state_dict(torch.load(file_path, weights_only=False))
             print(f"Model loaded successfully.")
         except Exception as e:
             print(f"Failed to load model: {file_path}. Error: {e}")
@@ -24,7 +24,7 @@ class ModelManager:
         except Exception as e:
             print(f"Error saving model: {e}")
     
-    def train(self, X, y, lr=0.001, epochs=200):
+    def train(self, X, y, lr=0.001, epochs=100):
         X = torch.tensor(X.values, dtype=torch.float32)
         y = torch.tensor(y.values, dtype=torch.float32)
 

@@ -46,14 +46,6 @@ class DataManager:
         if self.data is None:
             raise ValueError("No data to preprocess. Load data first.")
         
-        category_data = pd.DataFrame({
-            'age': self.data['GRADE'],
-            'stress': self.data['M_STR'],
-            'loneliness': self.data['M_LON'],
-            'grade': self.data['E_S_RCRD'],
-            'economy': self.data['E_SES'],
-            'residence': self.data['E_RES'],
-        })
         binary_data = pd.DataFrame({
             'gender': (self.data['SEX'] > 1),
             'breakfast': (self.data['F_BR'] > 1),
@@ -68,11 +60,21 @@ class DataManager:
             'plan': self.data['M_SUI_PLN'],
             'attempt': self.data['M_SUI_ATT'],
         })
-        self.data = pd.concat([category_data, binary_data], axis=1)
+        category_data = pd.DataFrame({
+            'age': self.data['GRADE'],
+            'stress': self.data['M_STR'],
+            'loneliness': self.data['M_LON'],
+            'grade': self.data['E_S_RCRD'],
+            'economy': self.data['E_SES'],
+            'residence': self.data['E_RES'],
+        })
+        columns = [
+            'gender', 'age', 'breakfast', 'exercise', 'stress', 'loneliness', 'sleep', 'anxiety', 'worry', 'anger', 'depression', 'violence', 'grade', 'economy', 'residence', 'thought', 'plan', 'attempt'
+        ]
+        self.data = pd.concat([binary_data, category_data], axis=1)
         self.data.dropna(inplace=True)
-        self.data = self.data.astype(int)
+        self.data = self.data.astype(int).reindex(columns=columns)
         self.data = pd.get_dummies(self.data, columns=['age', 'residence'], dtype=int)
-
         risk_weights = {'thought': 0.2, 'plan': 0.3, 'attempt': 0.5}
         self.data['risk'] = (
             self.data['thought'] * risk_weights['thought'] +

@@ -1,6 +1,7 @@
-pandas
-pyreadstat
-matplotlib
-torch
-fastapi
-uvicorn
+numpy==2.1.3
+pandas==2.2.3
+pyreadstat==1.2.8
+matplotlib==3.9.3
+torch==2.5.1
+fastapi==0.115.6
+uvicorn==0.32.1

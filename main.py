@@ -25,26 +25,38 @@ class Response(BaseModel):
     solution: str
 
 solution = [
-    "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"
+    "현재 큰 위험은 없어 보이지만, 감정 체크를 꾸준히 하시면 좋겠어요.",
+    "경미한 위험이 감지돼요. 상담을 통해 감정을 나누어 보는 것도 도움이 될 수 있어요.",
+    "위험이 존재할 수 있어요. 전문가와 상담을 고려해보세요.",
+    "불안정한 상태일 수 있어요. 전문가와 상담을 받는 것이 필요해 보여요.",
+    "위험이 중간 정도예요. 상담을 통해 도움을 받는 것이 중요해요.",
+    "위험이 꽤 심각할 수 있어요. 빠르게 전문가와 상담을 받는 것이 좋겠어요.",
+    "매우 높은 위험이 감지돼요. 즉시 심리적 지원을 받는 것이 필요해요.",
+    "생명에 위험이 있을 수 있어요. 긴급히 24시간 상담 서비스에 연락하세요.",
+    "즉각적인 위험 신호예요. 전문가의 도움을 빠르게 받는 것이 중요해요.",
+    "생명에 위협이 될 수 있어요. 지금 바로 응급실이나 24시간 상담 서비스(1588-9191)에 연락하세요",
+    "항상 당신의 안전이 우선이에요. 어려운 상황이라면 언제든 전문가에게 도움을 요청하세요."
 ]
 
 app = FastAPI()
 app.mount("/static", staticfiles.StaticFiles(directory="app"), name="static")
 
+model = ModelManager()
+model.load("ai/model/v1.pth")
+
 @app.get("/", response_class=responses.HTMLResponse)
 async def page():
-    with open("app/index.html", "r") as file:
-        return responses.HTMLResponse(content=file.read(), status_code=200)
+    with open("app/index.html", "r", encoding="utf-8") as file:
+        return responses.HTMLResponse(content=file.read())
 
 @app.post("/", response_model=Response)
 async def result(data: Request):
-    data = DataFrame([data])
+    data = DataFrame([dict(data)])
     for i in range(1, 7):
-        data[f"age_{i}"] = int(i == data['age'])
-        if i < 6: data[f"residence_{i}"] = int(i == data['residence'])
+        data[f"age_{i}"] = int(i == data['age'].iloc[0])
+    for i in range(1, 6):
+        data[f"residence_{i}"] = int(i == data['residence'].iloc[0])
     data.drop(columns=['age', 'residence'], inplace=True)
 
-    model = ModelManager()
-    model.load("ai/model/v1.pth")
     outputs = model.predict(data)
-    return Response(risk=outputs, solution=solution[outputs//10])
+    return Response(risk=outputs, solution=solution[int(outputs)//10])
