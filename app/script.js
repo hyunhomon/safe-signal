@@ -7,96 +7,96 @@ const servey = [
             'label': '당신의 성별은 무엇인가요?',
             'type': 'radio-vertical',
             'options': {
-                'male': '남성',
-                'female': '여성',
+                0: '남성',
+                1: '여성',
             },
         },
         'age': {
-            'label': '당신의 학년은 무엇인가요?',
+            'label': '당신의 학년은 어떻게 되나요?',
             'type': 'radio',
             'options': {
-                'm1': '중1',
-                'm2': '중2',
-                'm3': '중3',
-                'h1': '고1',
-                'h2': '고2',
-                'h3': '고3',
+                1: '중1',
+                2: '중2',
+                3: '중3',
+                4: '고1',
+                5: '고2',
+                6: '고3',
             },
         },
     },
     {
         'breakfast': {
-            'label': '최근 7일간 아침식사를 하셨나요?',
+            'label': '최근 7일간 아침식사를 한 적이 있나요?',
             'type': 'radio-vertical',
             'options': {
-                'yes': '안했다',
-                'no': '했다',
+                0: '안했다',
+                1: '했다',
             },
         },
         'exercise': {
-            'label': '최근 7일간 숨이 찰 정도로 운동을 하셨나요?',
+            'label': '최근 7일간 숨이 찰 정도로 운동을 한 적이 있나요?',
             'type': 'radio-vertical',
             'options': {
-                'yes': '안했다',
-                'no': '했다',
+                0: '안했다',
+                1: '했다',
             },
         },
     },
     {
         'stress': {
-            'label': '평상시 스트레스를 얼마나 느끼나요?',
+            'label': '평상시 스트레스를 얼마나 느끼고 있나요?',
             'type': 'radio',
             'options': {
-                'vl': '대단히 많이 느낀다',
-                'l': '많이 느낀다',
-                'm': '조금 느낀다',
-                'h': '별로 느끼지 않는다',
-                'vh': '전혀 느끼지 않는다',
+                1: '대단히 많이 느낀다',
+                2: '많이 느낀다',
+                3: '조금 느낀다',
+                4: '별로 느끼지 않는다',
+                5: '전혀 느끼지 않는다',
             },
         },
         'loneliness': {
-            'label': '평상시 외로움을 얼마나 자주 느끼나요?',
+            'label': '평상시 외로움을 얼마나 느끼고 있나요?',
             'type': 'radio',
             'options': {
-                'vl': '전혀 느끼지 않는다',
-                'l': '거의 느끼지 않는다',
-                'm': '가끔 느낀다',
-                'h': '자주 느낀다',
-                'vh': '항상 느낀다',
+                5: '항상 느낀다',
+                4: '자주 느낀다',
+                3: '가끔 느낀다',
+                2: '거의 느끼지 않는다',
+                1: '전혀 느끼지 않는다',
             },
         },
         'sleep': {
             'label': '평상시 충분한 수면을 취하고 있나요?',
             'type': 'radio-vertical',
             'options': {
-                'yes': '충분하다',
-                'no': '충분하지 않다',
+                0: '충분하다',
+                1: '충분하지 않다',
             },
         },
     },
     {
         'anxiety': {
-            'label': '심각한 불안감을 느끼는 편인가요?',
+            'label': '심각한 불안감을 자주 느끼나요?',
             'type': 'radio-vertical',
             'options': {
-                'yes': '자주 느끼지는 않는다',
-                'no': '자주 느낀다',
+                0: '자주 느끼지는 않는다',
+                1: '자주 느낀다',
             },
         },
         'worry': {
-            'label': '심각한 걱정을 자주 하는 편인가요?',
+            'label': '심각한 걱정을 자주 하나요?',
             'type': 'radio-vertical',
             'options': {
-                'yes': '자주 하지는 않는다',
-                'no': '자주 한다',
+                0: '자주 하지는 않는다',
+                1: '자주 한다',
             },
         },
         'anger': {
             'label': '짜증이 쉽게 나고 불편한 감정이 자주 드나요?',
             'type': 'radio-vertical',
             'options': {
-                'yes': '자주 들지 않는다',
-                'no': '자주 든다',
+                0: '자주 들지는 않는다',
+                1: '자주 든다',
             },
         },
     },
@@ -105,16 +105,16 @@ const servey = [
             'label': '최근 2주간 일상생활이 어려울 정도로 우울해진 경험이 있나요?',
             'type': 'radio-vertical',
             'options': {
-                'yes': '없다',
-                'no': '있다',
+                0: '없다',
+                1: '있다',
             },
         },
         'violence': {
             'label': '최근 1년간 물리적 폭력을 당하여 입원한 경험이 있나요?',
             'type': 'radio-vertical',
             'options': {
-                'yes': '없다',
-                'no': '있다',
+                0: '없다',
+                1: '있다',
             },
         },
     },
@@ -123,33 +123,33 @@ const servey = [
             'label': '학업 성적은 어떤가요?',
             'type': 'radio',
             'options': {
-                'vh': '하위권',
-                'h': '중하위권',
-                'm': '중위권',
-                'l': '중상위권',
-                'vl': '상위권',
+                1: '상위권',
+                2: '중상위권',
+                3: '중위권',
+                4: '중하위권',
+                5: '하위권',
             },
         },
         'economy': {
             'label': '가정의 경제적 상황은 어떤가요?',
             'type': 'radio',
             'options': {
-                'vh': '부족하다',
-                'h': '빠듯하다',
-                'm': '평범하다',
-                'l': '여유롭다',
-                'vl': '풍족하다',
+                1: '풍족하다',
+                2: '여유롭다',
+                3: '평범하다',
+                4: '빠듯하다',
+                5: '부족하다',
             },
         },
         'residence': {
             'label': '현재 거주형태는 어떤가요?',
             'type': 'radio',
             'options': {
-                'family': '본가',
-                'relative': '친가/외가',
-                'alone': '하숙/자취',
-                'dormitory': '기숙사',
-                'facility': '보육시설',
+                1: '본가',
+                2: '친가/외가',
+                3: '하숙/자취',
+                4: '기숙사',
+                5: '보육시설',
             },
         }
     }
@@ -279,50 +279,18 @@ next.addEventListener('click', () => {
 submit.addEventListener('click', () => {
     const every = checkAll();
     if(every){
-        const result = convert(cache);
-        console.log(result);
+        console.log(cache);
         fetch('/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(result),
+            body: JSON.stringify(cache),
         }).then(res => res.json()).then(data => {
             makeResult(data.risk, data.solution);
         })
     }
 });
-
-function convert(_cache){
-    const result = {};
-    for(let key in _cache){
-        const value = _cache[key];
-        const newVal =
-        value === 'yes' ? 0 :
-        value === 'no' ? 1 :
-        value === 'vl' ? 1 :
-        value === 'l' ? 2 :
-        value === 'm' ? 3 :
-        value === 'h' ? 4 :
-        value === 'vh' ? 5 :
-        value === 'm1' ? 1 :
-        value === 'm2' ? 2 :
-        value === 'm3' ? 3 :
-        value === 'h1' ? 4 :
-        value === 'h2' ? 5 :
-        value === 'h3' ? 6 :
-        value === 'male' ? 0 :
-        value === 'female' ? 1 :
-        value === 'family' ? 1 :
-        value === 'relative' ? 2 :
-        value === 'alone' ? 3 :
-        value === 'dormitory' ? 4 :
-        value === 'facility' ? 5 :
-        0;
-        result[key] = newVal;
-    }
-    return result;
-}
 
 function makeResult(percent, solution){
     $_('survey').classList.add('hidden');

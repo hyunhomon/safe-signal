@@ -4,7 +4,7 @@ from pandas import DataFrame
 from ai.model_manager import ModelManager
 
 class Request(BaseModel):
-    gender: int  # 0,1 -> 남자, 여자
+    gender: int  # 0,1 -> 남성, 여성
     age: int  # 1,2,3,4,5,6 -> 중1, 중2, 중3, 고1, 고2, 고3
     breakfast: int  # 0,1 -> 안했다, 했다
     exercise: int  # 0,1 -> 안했다, 했다
@@ -51,7 +51,10 @@ async def page():
 
 @app.post("/", response_model=Response)
 async def result(data: Request):
-    data = DataFrame([dict(data)])
+    columns = [
+        'gender', 'age', 'breakfast', 'exercise', 'stress', 'loneliness', 'sleep', 'anxiety', 'worry', 'anger', 'depression', 'violence', 'grade', 'economy', 'residence'
+    ]
+    data = DataFrame([dict(data)]).reindex(columns=columns)
     for i in range(1, 7):
         data[f"age_{i}"] = int(i == data['age'].iloc[0])
     for i in range(1, 6):
