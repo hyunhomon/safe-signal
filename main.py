@@ -42,11 +42,11 @@ app = FastAPI()
 app.mount("/static", staticfiles.StaticFiles(directory="app"), name="static")
 
 model = ModelManager()
-model.load("ai/model/v1.pth")
+model.load("ai/model/v2.pth")
 
 @app.get("/", response_class=responses.HTMLResponse)
 async def page():
-    with open("app/index.html", "r", encoding="utf-8") as file:
+    with open("app/v1/index.html", "r", encoding="utf-8") as file:
         return responses.HTMLResponse(content=file.read())
 
 @app.post("/", response_model=Response)
